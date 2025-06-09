@@ -1,0 +1,62 @@
+<div class="modal-header bg-dark text-light ">
+    <h4 class="modal-title text-center">{{message}}</h4>
+    <button type="button" class=" btn btn-outilne-danger btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="goalForm" (ngSubmit)="save()" class="text-center">
+        <div class="form-group" #formFieldName>
+            <input type="hidden" formControlName="id" [value]="goal.id">
+        </div>
+        <div class="form-group">
+            <label for="name"><i class="bi bi-crosshair2"></i> What's your goal?</label>
+            <input id="name" name="name" type="text" formControlName="name" [value]="goal.name"class="form-control" placeholder="Name your goal!">
+        </div>
+        <div class="form-group">
+            <label for="motivation"><i class="bi bi-brightness-alt-high-fill"></i> What's your motivation?</label>
+            <input id="motivation" formControlName="motivation" [value]="goal.motivation" class="form-control" placeholder="Why you want to this?">
+        </div>
+        <div class="form-group">
+            <label for="status"><i class="bi bi-flag-fill"></i> What's the situation?</label>
+            <input id="status" #statusInput name="status" type="text" [disabled]="true" class="form-control" placeholder="In which step are you?" formControlName="status"
+            (click)="listItemsStatus.className = listItemsStatus.className == '' ? 'd-none':''">
+            <div #listItemsStatus class="d-none" style="position: absolute;width: 50%;box-shadow: 5px 5px 5px rgb(182, 182, 182);">
+                <ul class="list-group" *ngFor="let status of getStatus();let i = index">
+                    <li
+                        [ngClass]="'list-group-item d-flex justify-content-between' + (status == statusInput.value ? ' active':'')" 
+                        (click)="(statusInput.value = status);"
+                        style="border-radius: 0;"
+                        (click)="statusInput.value = status;listItemsStatus.className = 'd-none'"
+                        ><i class="bi bi-flag-fill"></i> {{status}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="domain"><i class="bi bi-person-arms-up"></i> In Which area of your life are you working on?</label>
+            <input id="domain" #domainInput type="text" [disabled]="true" formControlName="domain" [value]="goal.domain" class="form-control" placeholder="Thing about in which are are you desiring to improve"
+                (click)="listItemsDomain.className = listItemsDomain.className == '' ? 'd-none':''">
+            <div #listItemsDomain class="d-none" style="position: absolute;width: 50%;box-shadow: 5px 5px 5px rgb(182, 182, 182);">
+                <ul class="list-group" *ngFor="let domain of getDomain();let i = index">
+                    <li
+                        [ngClass]="'list-group-item d-flex justify-content-between' + (domain == domainInput.value ? ' active':'')" 
+                        (click)="(domainInput.value = domain);"
+                        style="border-radius: 0;"
+                        (click)="domainInput.value = domain;listItemsDomain.className = 'd-none'"
+                        ><i class="bi bi-flag-fill"></i> {{domain}}</li>
+                </ul>
+            </div>
+        
+        </div>
+        
+        <div class="form-group" >
+            <label for="startDate"><i class="bi bi-calendar-heart-fill"></i> When have you started?</label>
+            <input id="startDate" type="date" formControlName="startDate" [value]="goal.motivation" class="form-control" placeholder="Why you want to this?"> 
+        </div>
+        <div class="form-group">
+            <label for="EndDate"><i class="bi bi-calendar2-check-fill"></i> Final Date to achieve!</label>
+            <input id="EndDate" type="date"  formControlName="endDate" [value]="goal.motivation" class="form-control" placeholder="Be realistic about the deadline!">
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="save()">Save</button>
+</div>
