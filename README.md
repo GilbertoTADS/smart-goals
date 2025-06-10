@@ -57,3 +57,15 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+# Features
+
+## Goal module - working here
+> 1º The user can manipulate their goals locally and relate these goals with the habits needed to achieve the goal.
+> 2º The user can keep tracking their goals and habits progress.
+
+## Working On Goal/Habit module
+1º The user will can start a goal/habit work which will trigger a timer a relaxing sound during the task.
+
+## IA Coaching module - waiting
+> 1º Daily an IA will generate short motivational and instructional text for the user based on user profile, progress, goals and habits. 
