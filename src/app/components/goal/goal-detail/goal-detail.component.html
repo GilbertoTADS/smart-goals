@@ -4,7 +4,7 @@
 </div>
 <div class="modal-body">
     <form [formGroup]="goalForm" (ngSubmit)="save()" class="text-center">
-        <div class="form-group" #formFieldName>
+        <div class="form-group">
             <input type="hidden" formControlName="id" [value]="goal.id">
         </div>
         <div class="form-group">
@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label for="status"><i class="bi bi-flag-fill"></i> What's the situation?</label>
-            <input id="status" #statusInput name="status" type="text" [disabled]="true" class="form-control" placeholder="In which step are you?" formControlName="status"
+            <input id="status" #statusInput name="status" type="text" [disabled]="true" formControlName="status" [value]="goal.status" class="form-control" placeholder="In which step are you?" formControlName="status"
             (click)="listItemsStatus.className = listItemsStatus.className == '' ? 'd-none':''">
             <div #listItemsStatus class="d-none" style="position: absolute;width: 50%;box-shadow: 5px 5px 5px rgb(182, 182, 182);">
                 <ul class="list-group" *ngFor="let status of getStatus();let i = index">
@@ -49,11 +49,11 @@
         
         <div class="form-group" >
             <label for="startDate"><i class="bi bi-calendar-heart-fill"></i> When have you started?</label>
-            <input id="startDate" type="date" formControlName="startDate" [value]="goal.motivation" class="form-control" placeholder="Why you want to this?"> 
+            <input id="startDate" type="date" formControlName="startDate" [value]="goal.startDate" class="form-control" placeholder="Why you want to this?"> 
         </div>
         <div class="form-group">
             <label for="EndDate"><i class="bi bi-calendar2-check-fill"></i> Final Date to achieve!</label>
-            <input id="EndDate" type="date"  formControlName="endDate" [value]="goal.motivation" class="form-control" placeholder="Be realistic about the deadline!">
+            <input id="EndDate" type="date"  formControlName="endDate" [value]="goal.endDate" class="form-control" placeholder="Be realistic about the deadline!">
         </div>
     </form>
 </div>

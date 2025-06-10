@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform, Type } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { GoalDomainEnum } from './goal.domain.enum';
 
 @Pipe({
@@ -7,9 +7,9 @@ import { GoalDomainEnum } from './goal.domain.enum';
 export class GoalDomainPipe implements PipeTransform {
 
   transform(value: GoalDomainEnum, ...args: unknown[]): unknown {
+    if(!value) return ""
     return Object.keys(GoalDomainEnum)
-            .filter(value => isNaN(Number(value)))[value].replace("_", " ").toLowerCase() 
-    
+            .filter(value => isNaN(Number(value)))[value].replace("_", " ").toLowerCase()
   }
 
 }

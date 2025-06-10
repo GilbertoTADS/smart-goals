@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { GoalStatusEnum } from '../goal.status.enum';
 import { NgClass, NgFor } from '@angular/common';
 import { GoalDomainEnum } from '../goal.domain.enum';
+import { GoalLocalStorageService } from '../../../services/goal/goal-local-storage.service';
 
 @Component({
   selector: 'app-goal-detail',
@@ -19,7 +20,7 @@ export class GoalDetailComponent implements OnInit{
   @Input() private readonly me!:NgbModalRef
   goalForm!:FormGroup
 
-  constructor(private readonly fb:FormBuilder){}
+  constructor(private readonly fb:FormBuilder, private readonly service:GoalLocalStorageService){}
 
   ngOnInit(): void {
       this.buildForm()
@@ -31,7 +32,9 @@ export class GoalDetailComponent implements OnInit{
     return Object.keys(GoalDomainEnum).filter(v => isNaN(Number(v)))
   }
   save():void{
-    console.log('save')
+    const goal:Goal = this.goalForm.value
+    console.log(goal)
+    this.service.save(this.goalForm.value)
     this.me.close('testing')
   }
   close(){

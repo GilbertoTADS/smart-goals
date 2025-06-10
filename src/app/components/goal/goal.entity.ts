@@ -10,7 +10,7 @@ export interface Goal{
     status:GoalStatusEnum
     domain:GoalDomainEnum
     startDate:string
-    EndDate:string
+    endDate:string
     habits:Habit[]
     plan:GoalPlan[]
 }
